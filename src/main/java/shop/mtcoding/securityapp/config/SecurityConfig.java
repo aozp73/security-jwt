@@ -17,9 +17,8 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 @Configuration
 public class SecurityConfig {
-
     @Bean
-    BCryptPasswordEncoder passwordEncoder(){
+    BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -34,7 +33,7 @@ public class SecurityConfig {
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .loginProcessingUrl("/login") // POST + X-WWW-Form-urlEncoded
-                //.defaultSuccessUrl("/")
+                // .defaultSuccessUrl("/")
                 .successHandler((eq, resp, authentication) -> {
                     System.out.println("디버그 : 로그인이 완료되었습니다");
                     resp.sendRedirect("/");
@@ -49,8 +48,7 @@ public class SecurityConfig {
                         .antMatchers("/manager/**")
                         .access("hasRole('ADMIN') or hasRole('MANAGER')")
                         .antMatchers("/admin/**").hasRole("ADMIN")
-                        .anyRequest().permitAll()
-                );
+                        .anyRequest().permitAll());
 
         return http.build();
     }
