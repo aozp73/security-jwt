@@ -20,10 +20,11 @@ public class MyUserDetailsService implements UserDetailsService {
     // Authentication 객체 만들어짐
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("테스트 : loadUserByUsername 실행 됨");
         Optional<User> userOP = userRepository.findByUsername(username);
-        if(userOP.isPresent()){
+        if (userOP.isPresent()) {
             return new MyUserDetails(userOP.get());
-        }else{
+        } else {
             return null;
         }
     }

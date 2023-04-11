@@ -6,14 +6,15 @@ import shop.mtcoding.securityapp.model.User;
 
 public class UserRequest {
 
-    @Getter @Setter
+    @Getter
+    @Setter
     public static class JoinDTO {
         private String username;
         private String password;
         private String email;
         private String role;
 
-        public User toEntity(){
+        public User toEntity() {
             return User.builder()
                     .username(username)
                     .password(password)
@@ -22,5 +23,13 @@ public class UserRequest {
                     .status(true)
                     .build();
         }
+    }
+
+    @Getter
+    @Setter
+    public static class LoginDTO {
+        private String username;
+        private String password;
+        // save하는게 아니라 toentity 필요 없음
     }
 }
